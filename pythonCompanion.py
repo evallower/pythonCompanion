@@ -77,7 +77,7 @@ if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     
     try:
-        import qt4reactor
+        from qt4reactor import qt4reactor
         print "found"
     except ImportError:
         print "import error"
