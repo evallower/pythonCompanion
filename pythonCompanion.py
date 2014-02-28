@@ -12,15 +12,11 @@ from pythonCompanionGUI import Ui_MainWindow
 
 class Iphone(Protocol):
     def connectionMade(self):
-        self.factory.clients.append(self)
-        print "Client connected", self.factory.clients
-
-    def connectionMade(self):
-        self.factory.clients.append(self)
-        print "Client connected", self.factory.clients
+        global x
+        x = self
+        print "Client Connected ", x
 
     def connectionLost(self, reason):
-        self.factory.clients.remove(self)
         print "Client disconnected"
 
     def dataReceived(self, data):
@@ -42,8 +38,9 @@ class Iphone(Protocol):
 
         msg = "previous"
 
-        for c in self.factory.clients:
-            c.message(msg)
+    def testMsg(self, msg):
+        print x
+        x.message(msg)
 
     def message(self, message):
         self.transport.write(message + '\n')
@@ -54,7 +51,6 @@ class Iphone(Protocol):
 class Main(QtGui.QMainWindow):
     def __init__(self,reactor, parent=None):
         super(Main, self).__init__(parent)
-        
 
         factory = Factory()
         factory.protocol = Iphone
@@ -72,6 +68,22 @@ class Main(QtGui.QMainWindow):
         labelAlbum = self.ui.albumLabel
         labelArtist = self.ui.artistLabel
         labelSong = self.ui.titleLabel
+
+        self.ui.playButton.clicked.connect(lambda:buttons("play"))
+        self.ui.nextButton.clicked.connect(lambda:buttons("next"))
+        self.ui.previousButton.clicked.connect(lambda:buttons("previous"))
+
+def buttons(button):
+    p = Iphone()
+    if button == "play":
+        print "play button pressed"
+        p.testMsg("play")
+    elif button == "next":
+        print "next button pressed"
+        p.testMsg("next")
+    elif button == "previous":
+        print "previous button pressed"
+        p.testMsg("previous")
             
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>691</width>
+    <width>600</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Music Companion</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>380</x>
       <y>20</y>
       <width>200</width>
       <height>200</height>
@@ -27,40 +27,96 @@
    <widget class="QLabel" name="albumLabel">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>40</x>
       <y>60</y>
-      <width>57</width>
+      <width>300</width>
       <height>14</height>
      </rect>
     </property>
     <property name="text">
      <string>Album</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>40</x>
       <y>40</y>
-      <width>57</width>
+      <width>300</width>
       <height>14</height>
      </rect>
     </property>
     <property name="text">
      <string>Title</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="artistLabel">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>40</x>
       <y>20</y>
-      <width>57</width>
+      <width>300</width>
       <height>14</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="text">
      <string>Artist</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>90</y>
+      <width>83</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Play</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>90</y>
+      <width>83</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="previousButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>83</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Previous</string>
     </property>
    </widget>
   </widget>
