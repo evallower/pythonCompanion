@@ -1,6 +1,6 @@
 from twisted.internet.protocol import Factory, Protocol
 import json
-import os,sys
+import os,sys,base64
 
 # Import Qt modules
 from PyQt4 import QtCore,QtGui
@@ -27,19 +27,25 @@ class Iphone(Protocol):
         print jsonData[0]['album']
         print jsonData[0]['title']
         print jsonData[0]['duration']
+        print jsonData[1]['playBackState']
         songTitle = jsonData[0]['title']
         songArtist = jsonData[0]['artist']
         songAlbum = jsonData[0]['album']
         songDuration = jsonData[0]['duration']
+        playStatus = jsonData[1]['playBackState']
+        imgString = jsonData[0]['artworkImg']
+
+        imgArtworkString = base64.b64decode(imgString)
+        qimg = QtGui.QImage.fromData(imgArtworkString)
+        pixmap = QtGui.QPixmap.fromImage(qimg)
 
         labelSong.setText(songTitle)
         labelArtist.setText(songArtist)
         labelAlbum.setText(songAlbum)
-
-        msg = "previous"
+        playButton.setText(playStatus)
+        artworkImg.setPixmap(pixmap)
 
     def testMsg(self, msg):
-        print x
         x.message(msg)
 
     def message(self, message):
@@ -65,9 +71,13 @@ class Main(QtGui.QMainWindow):
         global labelAlbum
         global labelArtist
         global labelSong
+        global playButton
+        global artworkImg
         labelAlbum = self.ui.albumLabel
         labelArtist = self.ui.artistLabel
         labelSong = self.ui.titleLabel
+        playButton = self.ui.playButton
+        artworkImg = self.ui.artworkImg
 
         self.ui.playButton.clicked.connect(lambda:buttons("play"))
         self.ui.nextButton.clicked.connect(lambda:buttons("next"))

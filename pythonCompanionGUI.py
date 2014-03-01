@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pythonCompanion.ui'
+# Form implementation generated from reading ui file '/Users/welshy136/Desktop/Development/pythonCompanion/pythonCompanion.ui'
 #
-# Created: Fri Feb 28 11:07:34 2014
+# Created: Sat Mar  1 10:19:18 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,9 +29,6 @@ class Ui_MainWindow(object):
         MainWindow.resize(600, 600)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.graphicsView = QtGui.QGraphicsView(self.centralwidget)
-        self.graphicsView.setGeometry(QtCore.QRect(380, 20, 200, 200))
-        self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.albumLabel = QtGui.QLabel(self.centralwidget)
         self.albumLabel.setGeometry(QtCore.QRect(40, 60, 300, 14))
         self.albumLabel.setAlignment(QtCore.Qt.AlignCenter)
@@ -57,6 +54,12 @@ class Ui_MainWindow(object):
         self.previousButton = QtGui.QPushButton(self.centralwidget)
         self.previousButton.setGeometry(QtCore.QRect(30, 90, 83, 24))
         self.previousButton.setObjectName(_fromUtf8("previousButton"))
+        self.artworkImg = QtGui.QLabel(self.centralwidget)
+        self.artworkImg.setGeometry(QtCore.QRect(380, 20, 200, 200))
+        self.artworkImg.setFrameShape(QtGui.QFrame.Box)
+        self.artworkImg.setText(_fromUtf8(""))
+        self.artworkImg.setAlignment(QtCore.Qt.AlignCenter)
+        self.artworkImg.setObjectName(_fromUtf8("artworkImg"))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
