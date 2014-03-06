@@ -21,29 +21,41 @@ class Iphone(Protocol):
 
     def dataReceived(self, data):
         print data
-        jsonData = json.loads(data)
-        print jsonData
-        print jsonData[0]['artist']
-        print jsonData[0]['album']
-        print jsonData[0]['title']
-        print jsonData[0]['duration']
-        print jsonData[1]['playBackState']
-        songTitle = jsonData[0]['title']
-        songArtist = jsonData[0]['artist']
-        songAlbum = jsonData[0]['album']
-        songDuration = jsonData[0]['duration']
-        playStatus = jsonData[1]['playBackState']
-        imgString = jsonData[0]['artworkImg']
+        if data.startswith("["):
+            jsonData = json.loads(data)
+            #print jsonData
+            print jsonData[0]['artist']
+            print jsonData[0]['album']
+            print jsonData[0]['title']
+            print jsonData[0]['duration']
+            print jsonData[1]['playBackState']
+            songTitle = jsonData[0]['title']
+            songArtist = jsonData[0]['artist']
+            songAlbum = jsonData[0]['album']
+            songDuration = jsonData[0]['duration']
+            playStatus = jsonData[1]['playBackState']
+##            imgString = jsonData[0]['artworkImg']
+##
+##            dataStripped = imgString.replace("<","").replace(">","").replace(" ","")
+##            print dataStripped
+##            imgStringDecoded = dataStripped.decode("hex")
+##            print imgStringDecoded
+##            qimg = QtGui.QImage.fromData(imgStringDecoded)
+##            pixmap = QtGui.QPixmap.fromImage(qimg)
 
-        imgArtworkString = base64.b64decode(imgString)
-        qimg = QtGui.QImage.fromData(imgArtworkString)
-        pixmap = QtGui.QPixmap.fromImage(qimg)
+            labelSong.setText(songTitle)
+            labelArtistAlbum.setText(songArtist + " - " + songAlbum)
+            playButton.setText(playStatus)
+            labelDuration.setText(songDuration)
+#            artworkImg.setPixmap(pixmap)
+            
 
-        labelSong.setText(songTitle)
-        labelArtist.setText(songArtist)
-        labelAlbum.setText(songAlbum)
-        playButton.setText(playStatus)
-        artworkImg.setPixmap(pixmap)
+        else:
+            print "else"
+            print data
+##            imgString = data
+##            imgArtworkString = base64.b64decode(imgString)
+##            print imgArtworkString           
 
     def testMsg(self, msg):
         x.message(msg)
@@ -68,16 +80,16 @@ class Main(QtGui.QMainWindow):
         self.ui=Ui_MainWindow() 
         self.ui.setupUi(self)
 
-        global labelAlbum
-        global labelArtist
+        global labelArtistAlbum
         global labelSong
         global playButton
         global artworkImg
-        labelAlbum = self.ui.albumLabel
-        labelArtist = self.ui.artistLabel
+        global labelDuration
+        labelArtistAlbum = self.ui.artistAlbumLabel
         labelSong = self.ui.titleLabel
         playButton = self.ui.playButton
         artworkImg = self.ui.artworkImg
+        labelDuration = self.ui.durationLabel
 
         self.ui.playButton.clicked.connect(lambda:buttons("play"))
         self.ui.nextButton.clicked.connect(lambda:buttons("next"))
