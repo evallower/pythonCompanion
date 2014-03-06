@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/welshy136/Desktop/Development/pythonCompanion/pythonCompanion.ui'
+# Form implementation generated from reading ui file 'c:\Users\Welshy136\Documents\GitHub\pythonCompanion\pythonCompanion.ui'
 #
-# Created: Sat Mar  1 10:19:18 2014
+# Created: Thu Mar 06 15:10:32 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,8 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(600, 600)
+        MainWindow.resize(600, 270)
+        MainWindow.setMinimumSize(QtCore.QSize(600, 270))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.albumLabel = QtGui.QLabel(self.centralwidget)
@@ -56,14 +57,29 @@ class Ui_MainWindow(object):
         self.previousButton.setObjectName(_fromUtf8("previousButton"))
         self.artworkImg = QtGui.QLabel(self.centralwidget)
         self.artworkImg.setGeometry(QtCore.QRect(380, 20, 200, 200))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.artworkImg.sizePolicy().hasHeightForWidth())
+        self.artworkImg.setSizePolicy(sizePolicy)
+        self.artworkImg.setMinimumSize(QtCore.QSize(200, 200))
         self.artworkImg.setFrameShape(QtGui.QFrame.Box)
         self.artworkImg.setText(_fromUtf8(""))
         self.artworkImg.setAlignment(QtCore.Qt.AlignCenter)
         self.artworkImg.setObjectName(_fromUtf8("artworkImg"))
+        self.progressBar = QtGui.QProgressBar(self.centralwidget)
+        self.progressBar.setGeometry(QtCore.QRect(397, 230, 171, 23))
+        self.progressBar.setProperty("value", 50)
+        self.progressBar.setTextVisible(False)
+        self.progressBar.setOrientation(QtCore.Qt.Horizontal)
+        self.progressBar.setInvertedAppearance(False)
+        self.progressBar.setObjectName(_fromUtf8("progressBar"))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        MainWindow.setTabOrder(self.previousButton, self.playButton)
+        MainWindow.setTabOrder(self.playButton, self.nextButton)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Music Companion", None))
