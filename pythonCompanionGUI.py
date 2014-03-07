@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/welshy136/Desktop/Development/pythonCompanion/pythonCompanion.ui'
+# Form implementation generated from reading ui file 'pythonCompanion.ui'
 #
-# Created: Thu Mar  6 23:47:15 2014
+# Created: Fri Mar 07 09:05:25 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -39,7 +39,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.verticalLayout = QtGui.QVBoxLayout()
-        self.verticalLayout.setSpacing(-1)
+        self.verticalLayout.setSpacing(6)
         self.verticalLayout.setContentsMargins(0, 12, 0, 12)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.titleLabel = QtGui.QLabel(self.centralwidget)
@@ -90,6 +90,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.nextButton)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_3.addLayout(self.verticalLayout)
+        spacerItem3 = QtGui.QSpacerItem(10, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem3)
         self.artworkImg = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -103,10 +105,10 @@ class Ui_MainWindow(object):
         self.artworkImg.setObjectName(_fromUtf8("artworkImg"))
         self.horizontalLayout_3.addWidget(self.artworkImg)
         self.gridLayout.addLayout(self.horizontalLayout_3, 1, 1, 1, 1)
-        spacerItem3 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem3, 2, 1, 1, 1)
         spacerItem4 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem4, 0, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem4, 2, 1, 1, 1)
+        spacerItem5 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

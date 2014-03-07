@@ -1,5 +1,6 @@
 from twisted.internet.protocol import Factory, Protocol
 import json
+import time
 import os,sys,base64
 
 # Import Qt modules
@@ -35,6 +36,31 @@ class Iphone(Protocol):
             songDuration = jsonData[0]['duration']
             songTime = jsonData[0]['time']
             playStatus = jsonData[1]['playBackState']
+            durationSplit = songDuration.split(':')
+            durationMinutes = int(durationSplit[0])
+            durationSeconds = int(durationSplit[1])
+            durationMinutes *= 60
+            durationAdd = durationMinutes + durationSeconds
+            timeSplit = songTime.split(':')
+            timeSeconds = int(timeSplit[1])
+            timeMinutes = int(timeSplit[0])
+            timeMinutes *= 60
+            timeAdd = int(timeMinutes + timeSeconds)
+            progressBar.setProperty("maximum", durationAdd)
+            print timeAdd
+
+            while (timeAdd < durationAdd):
+                timeAdd += 1
+                progressBar.setProperty("value", timeAdd)
+                minutes = timeAdd //60
+                seconds = timeAdd - (minutes * 60)
+                totalCurrentTime = str('%s:%s' % (minutes, seconds))
+                labelTime.setText(totalCurrentTime)
+                print totalCurrentTime
+                
+                print timeAdd
+#                time.sleep(1)
+
 ##            imgString = jsonData[0]['artworkImg']
 ##
 ##            dataStripped = imgString.replace("<","").replace(">","").replace(" ","")
@@ -48,7 +74,6 @@ class Iphone(Protocol):
             labelArtistAlbum.setText(songArtist + " - " + songAlbum)
             playButton.setText(playStatus)
             labelDuration.setText(songDuration)
-            labelTime.setText(songTime)
 #            artworkImg.setPixmap(pixmap)
             
 
@@ -88,12 +113,14 @@ class Main(QtGui.QMainWindow):
         global artworkImg
         global labelDuration
         global labelTime
+        global progressBar
         labelArtistAlbum = self.ui.artistAlbumLabel
         labelSong = self.ui.titleLabel
         playButton = self.ui.playButton
         artworkImg = self.ui.artworkImg
         labelDuration = self.ui.durationLabel
         labelTime = self.ui.timeLabel
+        progressBar = self.ui.progressBar
 
         self.ui.playButton.clicked.connect(lambda:buttons("play"))
         self.ui.nextButton.clicked.connect(lambda:buttons("next"))
