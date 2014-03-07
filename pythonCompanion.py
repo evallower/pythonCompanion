@@ -33,6 +33,7 @@ class Iphone(Protocol):
             songArtist = jsonData[0]['artist']
             songAlbum = jsonData[0]['album']
             songDuration = jsonData[0]['duration']
+            songTime = jsonData[0]['time']
             playStatus = jsonData[1]['playBackState']
 ##            imgString = jsonData[0]['artworkImg']
 ##
@@ -47,6 +48,7 @@ class Iphone(Protocol):
             labelArtistAlbum.setText(songArtist + " - " + songAlbum)
             playButton.setText(playStatus)
             labelDuration.setText(songDuration)
+            labelTime.setText(songTime)
 #            artworkImg.setPixmap(pixmap)
             
 
@@ -85,11 +87,13 @@ class Main(QtGui.QMainWindow):
         global playButton
         global artworkImg
         global labelDuration
+        global labelTime
         labelArtistAlbum = self.ui.artistAlbumLabel
         labelSong = self.ui.titleLabel
         playButton = self.ui.playButton
         artworkImg = self.ui.artworkImg
         labelDuration = self.ui.durationLabel
+        labelTime = self.ui.timeLabel
 
         self.ui.playButton.clicked.connect(lambda:buttons("play"))
         self.ui.nextButton.clicked.connect(lambda:buttons("next"))
