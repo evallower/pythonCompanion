@@ -49,6 +49,13 @@ class Iphone(Protocol):
             progressBar.setProperty("maximum", durationAdd)
             print timeAdd
 
+            labelSong.setText(songTitle)
+            labelArtistAlbum.setText(songArtist + " - " + songAlbum)
+            playButton.setText(playStatus)
+            labelDuration.setText(songDuration)
+#            artworkImg.setPixmap(pixmap)
+            app.processEvents()
+
             while (timeAdd < durationAdd):
                 timeAdd += 1
                 progressBar.setProperty("value", timeAdd)
@@ -68,14 +75,7 @@ class Iphone(Protocol):
 ##            imgStringDecoded = dataStripped.decode("hex")
 ##            print imgStringDecoded
 ##            qimg = QtGui.QImage.fromData(imgStringDecoded)
-##            pixmap = QtGui.QPixmap.fromImage(qimg)
-
-            labelSong.setText(songTitle)
-            labelArtistAlbum.setText(songArtist + " - " + songAlbum)
-            playButton.setText(playStatus)
-            labelDuration.setText(songDuration)
-#            artworkImg.setPixmap(pixmap)
-            
+##            pixmap = QtGui.QPixmap.fromImage(qimg)     
 
         else:
             print "else"
