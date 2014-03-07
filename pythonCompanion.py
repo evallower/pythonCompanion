@@ -54,7 +54,7 @@ class Iphone(Protocol):
                 progressBar.setProperty("value", timeAdd)
                 minutes = timeAdd //60
                 seconds = timeAdd - (minutes * 60)
-                totalCurrentTime = str('%s:%s' % (minutes, seconds))
+                totalCurrentTime = str('%s:%02d' % (minutes, seconds))
                 labelTime.setText(totalCurrentTime)
                 print totalCurrentTime
                 
