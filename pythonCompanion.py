@@ -16,6 +16,7 @@ class Iphone(Protocol):
         global x
         x = self
         print "Client Connected ", x
+        enable()
 
     def connectionLost(self, reason):
         print "Client disconnected"
@@ -91,7 +92,7 @@ class Iphone(Protocol):
                 print totalCurrentTime
                 app.processEvents()
                 
-    def testMsg(self, msg):
+    def sendMsg(self, msg):
         x.message(msg)
 
     def message(self, message):
@@ -121,6 +122,9 @@ class Main(QtGui.QMainWindow):
         global labelDuration
         global labelTime
         global progressBar
+        global playButton
+        global nextButton
+        global previousButton
         labelArtistAlbum = self.ui.artistAlbumLabel
         labelSong = self.ui.titleLabel
         playButton = self.ui.playButton
@@ -128,22 +132,30 @@ class Main(QtGui.QMainWindow):
         labelDuration = self.ui.durationLabel
         labelTime = self.ui.timeLabel
         progressBar = self.ui.progressBar
+        playButton = self.ui.playButton
+        nextButton = self.ui.nextButton
+        previousButton = self.ui.previousButton
 
-        self.ui.playButton.clicked.connect(lambda:buttons("play"))
-        self.ui.nextButton.clicked.connect(lambda:buttons("next"))
-        self.ui.previousButton.clicked.connect(lambda:buttons("previous"))
+        playButton.clicked.connect(lambda:buttons("play"))
+        nextButton.clicked.connect(lambda:buttons("next"))
+        previousButton.clicked.connect(lambda:buttons("previous"))
+
+def enable():
+    playButton.setEnabled(True)
+    nextButton.setEnabled(True)
+    previousButton.setEnabled(True)
 
 def buttons(button):
     p = Iphone()
     if button == "play":
         print "play button pressed"
-        p.testMsg("play")
+        p.sendMsg("play")
     elif button == "next":
         print "next button pressed"
-        p.testMsg("next")
+        p.sendMsg("next")
     elif button == "previous":
         print "previous button pressed"
-        p.testMsg("previous")
+        p.sendMsg("previous")
             
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

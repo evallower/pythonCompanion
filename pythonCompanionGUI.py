@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pythonCompanion.ui'
+# Form implementation generated from reading ui file '/Users/welshy136/Desktop/Development/pythonCompanion/pythonCompanion.ui'
 #
-# Created: Fri Mar 07 09:05:25 2014
+# Created: Sat Mar  8 15:03:33 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,7 +64,8 @@ class Ui_MainWindow(object):
         self.timeLabel.setObjectName(_fromUtf8("timeLabel"))
         self.horizontalLayout_2.addWidget(self.timeLabel)
         self.progressBar = QtGui.QProgressBar(self.centralwidget)
-        self.progressBar.setProperty("value", 50)
+        self.progressBar.setMaximum(0)
+        self.progressBar.setProperty("value", 0)
         self.progressBar.setTextVisible(False)
         self.progressBar.setOrientation(QtCore.Qt.Horizontal)
         self.progressBar.setInvertedAppearance(False)
@@ -77,14 +78,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.previousButton = QtGui.QPushButton(self.centralwidget)
+        self.previousButton.setEnabled(False)
         self.previousButton.setObjectName(_fromUtf8("previousButton"))
         self.horizontalLayout.addWidget(self.previousButton)
         self.playButton = QtGui.QPushButton(self.centralwidget)
-        self.playButton.setEnabled(True)
+        self.playButton.setEnabled(False)
         self.playButton.setMinimumSize(QtCore.QSize(93, 0))
         self.playButton.setObjectName(_fromUtf8("playButton"))
         self.horizontalLayout.addWidget(self.playButton)
         self.nextButton = QtGui.QPushButton(self.centralwidget)
+        self.nextButton.setEnabled(False)
         self.nextButton.setMinimumSize(QtCore.QSize(93, 0))
         self.nextButton.setObjectName(_fromUtf8("nextButton"))
         self.horizontalLayout.addWidget(self.nextButton)
