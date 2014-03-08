@@ -35,16 +35,19 @@ class Iphone(Protocol):
             songAlbum = jsonData[0]['album']
             songDuration = jsonData[0]['duration']
             songTime = jsonData[0]['time']
+            global playStatus
             playStatus = jsonData[1]['playBackState']
             durationSplit = songDuration.split(':')
             durationMinutes = int(durationSplit[0])
             durationSeconds = int(durationSplit[1])
             durationMinutes *= 60
+            global durationAdd
             durationAdd = durationMinutes + durationSeconds
             timeSplit = songTime.split(':')
             timeSeconds = int(timeSplit[1])
             timeMinutes = int(timeSplit[0])
             timeMinutes *= 60
+            global timeAdd
             timeAdd = int(timeMinutes + timeSeconds)
             progressBar.setProperty("maximum", durationAdd)
             print timeAdd
@@ -54,19 +57,12 @@ class Iphone(Protocol):
             playButton.setText(playStatus)
             labelDuration.setText(songDuration)
 #            artworkImg.setPixmap(pixmap)
-            app.processEvents()
 
-            while (timeAdd < durationAdd):
-                timeAdd += 1
-                progressBar.setProperty("value", timeAdd)
-                minutes = timeAdd //60
-                seconds = timeAdd - (minutes * 60)
-                totalCurrentTime = str('%s:%02d' % (minutes, seconds))
-                labelTime.setText(totalCurrentTime)
-                print totalCurrentTime
-                
-                print timeAdd
-#                time.sleep(1)
+            self.progressTimer = QtCore.QTimer()
+            self.progressTimer.start(1000)
+
+            # constant timer
+            QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("timeout()"), self.timer)                            
 
 ##            imgString = jsonData[0]['artworkImg']
 ##
@@ -79,11 +75,22 @@ class Iphone(Protocol):
 
         else:
             print "else"
-            print data
-##            imgString = data
-##            imgArtworkString = base64.b64decode(imgString)
-##            print imgArtworkString           
-
+            print data          
+    
+    def timer(self):
+        if (playStatus == "Pause"):
+            print "return pause"
+            if (timeAdd < durationAdd):
+                global timeAdd
+                timeAdd += 1
+                progressBar.setProperty("value", timeAdd)
+                minutes = timeAdd //60
+                seconds = timeAdd - (minutes * 60)
+                totalCurrentTime = str('%s:%02d' % (minutes, seconds))
+                labelTime.setText(totalCurrentTime)
+                print totalCurrentTime
+                app.processEvents()
+                
     def testMsg(self, msg):
         x.message(msg)
 
