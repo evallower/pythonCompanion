@@ -23,74 +23,7 @@ class Iphone(Protocol):
 
     def dataReceived(self, data):
         print data
-        if data.startswith("["):
-            jsonData = json.loads(data)
-            #print jsonData
-            print jsonData[0]['artist']
-            print jsonData[0]['album']
-            print jsonData[0]['title']
-            print jsonData[0]['duration']
-            print jsonData[1]['playBackState']
-            songTitle = jsonData[0]['title']
-            songArtist = jsonData[0]['artist']
-            songAlbum = jsonData[0]['album']
-            songDuration = jsonData[0]['duration']
-            songTime = jsonData[0]['time']
-            global playStatus
-            playStatus = jsonData[1]['playBackState']
-            durationSplit = songDuration.split(':')
-            durationMinutes = int(durationSplit[0])
-            durationSeconds = int(durationSplit[1])
-            durationMinutes *= 60
-            global durationAdd
-            durationAdd = durationMinutes + durationSeconds
-            timeSplit = songTime.split(':')
-            timeSeconds = int(timeSplit[1])
-            timeMinutes = int(timeSplit[0])
-            timeMinutes *= 60
-            global timeAdd
-            timeAdd = int(timeMinutes + timeSeconds)
-            progressBar.setProperty("maximum", durationAdd)
-            print timeAdd
-
-            labelSong.setText(songTitle)
-            labelArtistAlbum.setText(songArtist + " - " + songAlbum)
-            playButton.setText(playStatus)
-            labelDuration.setText(songDuration)
-#            artworkImg.setPixmap(pixmap)
-
-            self.progressTimer = QtCore.QTimer()
-            self.progressTimer.start(1000)
-
-            # constant timer
-            QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("timeout()"), self.timer)                            
-
-##            imgString = jsonData[0]['artworkImg']
-##
-##            dataStripped = imgString.replace("<","").replace(">","").replace(" ","")
-##            print dataStripped
-##            imgStringDecoded = dataStripped.decode("hex")
-##            print imgStringDecoded
-##            qimg = QtGui.QImage.fromData(imgStringDecoded)
-##            pixmap = QtGui.QPixmap.fromImage(qimg)     
-
-        else:
-            print "else"
-            print data          
-    
-    def timer(self):
-        if (playStatus == "Pause"):
-            print "return pause"
-            if (timeAdd < durationAdd):
-                global timeAdd
-                timeAdd += 1
-                progressBar.setProperty("value", timeAdd)
-                minutes = timeAdd //60
-                seconds = timeAdd - (minutes * 60)
-                totalCurrentTime = str('%s:%02d' % (minutes, seconds))
-                labelTime.setText(totalCurrentTime)
-                print totalCurrentTime
-                app.processEvents()
+        decode(data)         
                 
     def sendMsg(self, msg):
         x.message(msg)
@@ -140,6 +73,80 @@ class Main(QtGui.QMainWindow):
         nextButton.clicked.connect(lambda:buttons("next"))
         previousButton.clicked.connect(lambda:buttons("previous"))
 
+        self.progressTimer = QtCore.QTimer()
+        self.progressTimer.start(1000)
+
+        QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("timeout()"), timerRun)
+
+def decode(data):
+    if data.startswith("["):
+        jsonData = json.loads(data)
+        #print jsonData
+        print jsonData[0]['artist']
+        print jsonData[0]['album']
+        print jsonData[0]['title']
+        print jsonData[0]['duration']
+        print jsonData[1]['playBackState']
+        print jsonData[0]['time']
+        songTitle = jsonData[0]['title']
+        songArtist = jsonData[0]['artist']
+        songAlbum = jsonData[0]['album']
+        songDuration = jsonData[0]['duration']
+        songTime = jsonData[0]['time']
+        global playStatus
+        playStatus = jsonData[1]['playBackState']
+        durationSplit = songDuration.split(':')
+        durationMinutes = int(durationSplit[0])
+        durationSeconds = int(durationSplit[1])
+        durationMinutes *= 60
+        global durationAdd
+        durationAdd = durationMinutes + durationSeconds
+        timeSplit = songTime.split(':')
+        timeSeconds = int(timeSplit[1])
+        timeMinutes = int(timeSplit[0])
+        timeMinutes *= 60
+        global timeAdd
+        timeAdd = int(timeMinutes + timeSeconds)
+        progressBar.setProperty("maximum", durationAdd)
+        progressBar.setProperty("value", timeAdd)
+        print timeAdd
+
+        labelSong.setText(songTitle)
+        labelArtistAlbum.setText(songArtist + " - " + songAlbum)
+        playButton.setText(playStatus)
+        labelTime.setText(songTime)
+        labelDuration.setText(songDuration)
+#        artworkImg.setPixmap(pixmap)                            
+
+##       imgString = jsonData[0]['artworkImg']
+##
+##       dataStripped = imgString.replace("<","").replace(">","").replace(" ","")
+##       print dataStripped
+##       imgStringDecoded = dataStripped.decode("hex")
+##       print imgStringDecoded
+##       qimg = QtGui.QImage.fromData(imgStringDecoded)
+##       pixmap = QtGui.QPixmap.fromImage(qimg)
+
+    else:
+        print data
+
+def timerRun():
+    print "timer run"
+    if playButton.isEnabled():
+        if (playStatus == "Pause"):
+            print "return pause"
+            global timeAdd
+            if (timeAdd < durationAdd):
+                timeAdd += 1
+                progressBar.setProperty("value", timeAdd)
+                minutes = timeAdd //60
+                seconds = timeAdd - (minutes * 60)
+                totalCurrentTime = str('%s:%02d' % (minutes, seconds))
+                labelTime.setText(totalCurrentTime)
+                print totalCurrentTime
+#                time.sleep(1)
+                app.processEvents()
+
 def enable():
     playButton.setEnabled(True)
     nextButton.setEnabled(True)
@@ -173,5 +180,3 @@ if __name__ == "__main__":
     mainwindow.show()
 
     reactor.run()
-
-
