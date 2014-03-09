@@ -93,6 +93,9 @@ def decode(data):
         songAlbum = jsonData[0]['album']
         songDuration = jsonData[0]['duration']
         songTime = jsonData[0]['time']
+        if (songTime == "-1:60"):
+            print "matched"
+            songTime = "0:00"
         global playStatus
         playStatus = jsonData[1]['playBackState']
         durationSplit = songDuration.split(':')
@@ -132,10 +135,11 @@ def decode(data):
 
 def timerRun():
     print "timer run"
-    if playButton.isEnabled():
+    if (labelSong.text() != "Title"):
         if (playStatus == "Pause"):
             print "return pause"
             global timeAdd
+            print timeAdd
             if (timeAdd < durationAdd):
                 timeAdd += 1
                 progressBar.setProperty("value", timeAdd)
@@ -144,7 +148,6 @@ def timerRun():
                 totalCurrentTime = str('%s:%02d' % (minutes, seconds))
                 labelTime.setText(totalCurrentTime)
                 print totalCurrentTime
-#                time.sleep(1)
                 app.processEvents()
 
 def enable():
