@@ -81,7 +81,6 @@ class Main(QtGui.QMainWindow):
 def decode(data):
     if data.startswith("["):
         jsonData = json.loads(data)
-        #print jsonData
         print jsonData[0]['artist']
         print jsonData[0]['album']
         print jsonData[0]['title']
@@ -165,10 +164,6 @@ def buttons(button):
         p.sendMsg("next")
     elif button == "previous":
         print "previous button pressed"
-##        if (labelTime.text() != "0:00"):
-##            labelTime.setText("0:00")
-##            global timeAdd
-##            timeAdd = 0
         p.sendMsg("previous")
             
 if __name__ == "__main__":
