@@ -37,6 +37,7 @@ class Iphone(Protocol):
 class Main(QtGui.QMainWindow):
     def __init__(self,reactor, parent=None):
         super(Main, self).__init__(parent)
+        QtGui.QMainWindow.__init__(self, None, QtCore.Qt.WindowStaysOnTopHint)
 
         factory = Factory()
         factory.protocol = Iphone

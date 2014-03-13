@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/welshy136/Desktop/Development/pythonCompanion/pythonCompanion.ui'
+# Form implementation generated from reading ui file 'c:\Users\Welshy136\Documents\GitHub\pythonCompanion\pythonCompanion.ui'
 #
-# Created: Sat Mar  8 15:03:33 2014
+# Created: Mon Mar 10 16:13:23 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,16 +26,12 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(571, 246)
+        MainWindow.resize(509, 220)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 1, 0, 1, 1)
-        spacerItem1 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem1, 1, 2, 1, 1)
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.verticalLayout = QtGui.QVBoxLayout()
@@ -43,6 +39,11 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 12, 0, 12)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.titleLabel = QtGui.QLabel(self.centralwidget)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.titleLabel.sizePolicy().hasHeightForWidth())
+        self.titleLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Helvetica"))
         font.setPointSize(24)
@@ -53,11 +54,15 @@ class Ui_MainWindow(object):
         self.titleLabel.setObjectName(_fromUtf8("titleLabel"))
         self.verticalLayout.addWidget(self.titleLabel)
         self.artistAlbumLabel = QtGui.QLabel(self.centralwidget)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.artistAlbumLabel.sizePolicy().hasHeightForWidth())
+        self.artistAlbumLabel.setSizePolicy(sizePolicy)
+        self.artistAlbumLabel.setSizeIncrement(QtCore.QSize(1, 1))
         self.artistAlbumLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.artistAlbumLabel.setObjectName(_fromUtf8("artistAlbumLabel"))
         self.verticalLayout.addWidget(self.artistAlbumLabel)
-        spacerItem2 = QtGui.QSpacerItem(20, 10, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem2)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.timeLabel = QtGui.QLabel(self.centralwidget)
@@ -93,8 +98,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.nextButton)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_3.addLayout(self.verticalLayout)
-        spacerItem3 = QtGui.QSpacerItem(10, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem3)
         self.artworkImg = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -107,11 +110,7 @@ class Ui_MainWindow(object):
         self.artworkImg.setAlignment(QtCore.Qt.AlignCenter)
         self.artworkImg.setObjectName(_fromUtf8("artworkImg"))
         self.horizontalLayout_3.addWidget(self.artworkImg)
-        self.gridLayout.addLayout(self.horizontalLayout_3, 1, 1, 1, 1)
-        spacerItem4 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem4, 2, 1, 1, 1)
-        spacerItem5 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem5, 0, 1, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout_3, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
