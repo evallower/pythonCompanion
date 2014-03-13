@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'c:\Users\Welshy136\Documents\GitHub\pythonCompanion\pythonCompanion.ui'
 #
-# Created: Mon Mar 10 16:13:23 2014
+# Created: Thu Mar 13 16:05:38 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,6 +38,8 @@ class Ui_MainWindow(object):
         self.verticalLayout.setSpacing(6)
         self.verticalLayout.setContentsMargins(0, 12, 0, 12)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.verticalLayout_2 = QtGui.QVBoxLayout()
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.titleLabel = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -51,18 +53,23 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.titleLabel.setFont(font)
         self.titleLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.titleLabel.setWordWrap(True)
         self.titleLabel.setObjectName(_fromUtf8("titleLabel"))
-        self.verticalLayout.addWidget(self.titleLabel)
+        self.verticalLayout_2.addWidget(self.titleLabel)
         self.artistAlbumLabel = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.artistAlbumLabel.sizePolicy().hasHeightForWidth())
         self.artistAlbumLabel.setSizePolicy(sizePolicy)
-        self.artistAlbumLabel.setSizeIncrement(QtCore.QSize(1, 1))
+        self.artistAlbumLabel.setSizeIncrement(QtCore.QSize(0, 0))
+        self.artistAlbumLabel.setFrameShape(QtGui.QFrame.NoFrame)
+        self.artistAlbumLabel.setScaledContents(False)
         self.artistAlbumLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.artistAlbumLabel.setWordWrap(True)
         self.artistAlbumLabel.setObjectName(_fromUtf8("artistAlbumLabel"))
-        self.verticalLayout.addWidget(self.artistAlbumLabel)
+        self.verticalLayout_2.addWidget(self.artistAlbumLabel)
+        self.verticalLayout.addLayout(self.verticalLayout_2)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.timeLabel = QtGui.QLabel(self.centralwidget)
@@ -107,6 +114,7 @@ class Ui_MainWindow(object):
         self.artworkImg.setMinimumSize(QtCore.QSize(200, 200))
         self.artworkImg.setFrameShape(QtGui.QFrame.Box)
         self.artworkImg.setText(_fromUtf8(""))
+        self.artworkImg.setScaledContents(True)
         self.artworkImg.setAlignment(QtCore.Qt.AlignCenter)
         self.artworkImg.setObjectName(_fromUtf8("artworkImg"))
         self.horizontalLayout_3.addWidget(self.artworkImg)

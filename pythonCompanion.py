@@ -134,7 +134,7 @@ def decode(data):
         print data
 
 def timerRun():
-    print "timer run"
+    #print "timer run"
     if (labelSong.text() != "Title"):
         if (playStatus == "Pause"):
             print "return pause"
