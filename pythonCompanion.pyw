@@ -35,6 +35,22 @@ class Iphone(Protocol):
 
 # Create a class for our main window       
 class Main(QtGui.QMainWindow):
+    
+    def resizeEvent(self,resizeEvent):
+        testX = self.ui.centralwidget.geometry()
+        print self.ui.titleLabel.geometry()
+        print self.ui.titleLabel.sizeHint()
+        print testX
+        if (testX > 0):
+            print "greater"
+        else:
+            print "else"
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(28)
+        font.setBold(True)
+        self.ui.titleLabel.setFont(font)
+    
     def __init__(self,reactor, parent=None):
         super(Main, self).__init__(parent)
         QtGui.QMainWindow.__init__(self, None, QtCore.Qt.WindowStaysOnTopHint)
@@ -77,7 +93,7 @@ class Main(QtGui.QMainWindow):
         self.progressTimer = QtCore.QTimer()
         self.progressTimer.start(1000)
 
-        QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("timeout()"), timerRun)
+        QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("imeout()"), timerRun)
 
     def closeEvent(self, e):
         reactor.stop()
