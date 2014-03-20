@@ -93,7 +93,7 @@ class Main(QtGui.QMainWindow):
         self.progressTimer = QtCore.QTimer()
         self.progressTimer.start(1000)
 
-        QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("imeout()"), timerRun)
+        QtCore.QObject.connect(self.progressTimer, QtCore.SIGNAL("timeout()"), timerRun)
 
     def closeEvent(self, e):
         reactor.stop()
